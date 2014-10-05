@@ -1,7 +1,16 @@
-diff -uNr libzypp-bindings-0.5.9/swig/Capabilities.i libzypp-bindings-0.5.9.new/swig/Capabilities.i
---- libzypp-bindings-0.5.9/swig/Capabilities.i	2011-03-01 20:32:06.000000000 +0800
-+++ libzypp-bindings-0.5.9.new/swig/Capabilities.i	2011-09-14 13:17:20.273495831 +0800
-@@ -8,3 +8,17 @@
+From: Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+Date: Sun, 5 Oct 2014 17:01:31 +0200
+Subject: Add Capabilities iterator
+
+---
+ swig/Capabilities.i | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
+diff --git a/swig/Capabilities.i b/swig/Capabilities.i
+index 88e5c30..3ec97f5 100644
+--- a/swig/Capabilities.i
++++ b/swig/Capabilities.i
+@@ -8,3 +8,17 @@ by_value_iterator(zypp::Capabilities);
  #ifdef SWIGPERL5
  forwarditer(zypp::Capabilities, zypp::Capability);
  #endif

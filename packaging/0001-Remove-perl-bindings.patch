@@ -1,3 +1,22 @@
+From: Pier Luigi Fiorini <pierluigi.fiorini@gmail.com>
+Date: Sun, 5 Oct 2014 17:00:44 +0200
+Subject: Remove perl bindings
+
+---
+ swig/CMakeLists.txt             |  5 ---
+ swig/perl5/CMakeLists.txt       | 57 --------------------------
+ swig/perl5/perl.i               | 91 -----------------------------------------
+ swig/perl5/tests/CMakeLists.txt |  8 ----
+ swig/perl5/tests/loading.pl     |  7 ----
+ swig/perl5/tests/starting.pl    |  9 ----
+ swig/zypp.i                     | 48 ----------------------
+ 7 files changed, 225 deletions(-)
+ delete mode 100644 swig/perl5/CMakeLists.txt
+ delete mode 100644 swig/perl5/perl.i
+ delete mode 100644 swig/perl5/tests/CMakeLists.txt
+ delete mode 100644 swig/perl5/tests/loading.pl
+ delete mode 100644 swig/perl5/tests/starting.pl
+
 diff --git a/swig/CMakeLists.txt b/swig/CMakeLists.txt
 index efa48c4..2a8b354 100644
 --- a/swig/CMakeLists.txt
@@ -221,7 +240,7 @@ index 09d3954..0000000
 -$zfactory = zyppc::ZYppFactory_instance();
 -$zypp = $zfactory->getZYpp;
 diff --git a/swig/zypp.i b/swig/zypp.i
-index 08d573b..5fcb42b 100644
+index aff93a5..94bff30 100644
 --- a/swig/zypp.i
 +++ b/swig/zypp.i
 @@ -5,16 +5,6 @@
@@ -238,11 +257,11 @@ index 08d573b..5fcb42b 100644
 -%}
 -#endif
 -
- %{
- /* Includes the header in the wrapper code */
- #ifdef SWIGRUBY
-@@ -77,37 +67,6 @@
- #include <rubyio.h>
+ // stuff swig seems to be unable to parse
+ #define BOOST_NOEXCEPT
+ #define BOOST_NO_CXX11_NOEXCEPT
+@@ -82,36 +72,6 @@
+ #include <ruby.h>
  #endif
  
 -#if defined(SWIGPERL)
@@ -256,8 +275,8 @@ index 08d573b..5fcb42b 100644
 -SWIGINTERNINLINE SV *SWIG_From_double  SWIG_PERL_DECL_ARGS_1(double value);
 -
 -#define Target_Null_p(x) (x == NULL)
--#define Target_INCREF(x) 
--#define Target_DECREF(x) 
+-#define Target_INCREF(x)
+-#define Target_DECREF(x)
 -#define Target_True (&PL_sv_yes)
 -#define Target_False (&PL_sv_no)
 -#define Target_Null NULL
@@ -275,11 +294,10 @@ index 08d573b..5fcb42b 100644
 -#include <EXTERN.h>
 -#endif
 -
--
+ 
  #include <sstream>
- #include "zypp/base/PtrTypes.h"
- #include "zypp/base/ReferenceCounted.h"
-@@ -150,9 +109,6 @@ typedef std::list<std::string> StringList;
+ #undef seed // don't know where it comes from, but it conflicts with <random>
+@@ -157,9 +117,6 @@ typedef std::list<std::string> StringList;
  #if defined(SWIGPYTHON)
  #define Target_Type PyObject*
  #endif
@@ -289,7 +307,7 @@ index 08d573b..5fcb42b 100644
  
  #ifdef SWIGRUBY
  %include "ruby/std_list.i"
-@@ -166,11 +122,6 @@ typedef std::list<std::string> StringList;
+@@ -173,11 +130,6 @@ typedef std::list<std::string> StringList;
  %include "python/python.i"
  #endif
  
